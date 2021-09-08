@@ -1,4 +1,4 @@
-,age,gender,income,kids,ownHome,subscribe,Segment
+ID,age,gender,income,kids,ownHome,subscribe,Segment
 1,47.3161331,Male,49482.81044,2,No,No,Suburb mix
 2,31.3868389,Male,35546.2883,1,Yes,No,Suburb mix
 3,43.20034224,Male,44169.18638,0,Yes,No,Suburb mix
