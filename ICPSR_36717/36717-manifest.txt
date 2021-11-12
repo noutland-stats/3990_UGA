@@ -1,0 +1,41 @@
+File Manifest for ICPSR 36717
+
+United States Department of Justice. Office of Justice Programs. Bureau of
+Justice Statistics. Census of Problem-Solving Courts, 2012. ICPSR36717-v1.
+Ann Arbor, MI: Inter-university Consortium for Political and Social
+Research [distributor], 2017-04-06. http://doi.org/10.3886/ICPSR36717.v1
+
+
+Study-level Documentation
+
+    Filename                            Record  Record    Var.    Date        MD5
+                                        Length  Count     Count   Updated     Checksum
+
+    36717-descriptioncitation.pdf       -       -         -       2017-06-27  -
+
+    36717-related_literature.txt        -       -         -       daily       -
+
+    36717-manifest.txt                  -       -         -       daily       -
+
+
+DS0001 Census of Problem-Solving Courts, 2012
+
+    Filename                            Record  Record    Var.    Date        MD5
+                                        Length  Count     Count   Updated     Checksum
+
+    36717-0001-Codebook.pdf             -       -         -       2017-04-06  43e58521fe9338cc80a0ec0210883390
+
+    36717-0001-Data.sav                 -       3,633     371     2017-04-06  96574ef16979907babe931d6f3cc0846
+
+    36717-0001-Data.stc                 -       3,633     371     2017-04-06  f01e7ed3af61186e3a64e44a276c72a9
+
+    36717-0001-Data.tsv                 -       3,633     371     2017-04-06  0e46539fcca816b2f68858dbafa02aa9
+
+    36717-0001-Data.txt                 8412    3,633     371     2017-04-06  1e41ad07332d069fffa14967ed1bc2b6
+
+    36717-0001-Setup.sas                -       -         -       2017-04-06  4a614c4b57e0f47deb37ae49b29e87e9
+
+    36717-0001-Setup.sps                -       -         -       2017-04-06  50e6b11474d3a9479efb8dd164f9ada8
+
+    36717-0001-Supplemental_syntax.sas  -       -         -       2017-04-06  8aebb54ccb581559e2499a58c99c14f2
+
