@@ -1,0 +1,359 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+%
+\documentclass[
+]{article}
+\usepackage{amsmath,amssymb}
+\usepackage{lmodern}
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math}
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
+\hypersetup{
+  pdftitle={R Notebook},
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+\urlstyle{same} % disable monospaced font for URLs
+\usepackage[margin=1in]{geometry}
+\usepackage{graphicx}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+% Set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+\usepackage{booktabs}
+\usepackage{siunitx}
+\newcolumntype{d}{S[input-symbols = ()]}
+\usepackage{longtable}
+\usepackage{array}
+\usepackage{multirow}
+\usepackage{wrapfig}
+\usepackage{float}
+\usepackage{colortbl}
+\usepackage{pdflscape}
+\usepackage{tabu}
+\usepackage{threeparttable}
+\usepackage{threeparttablex}
+\usepackage[normalem]{ulem}
+\usepackage{makecell}
+\usepackage{xcolor}
+\ifLuaTeX
+  \usepackage{selnolig}  % disable illegal ligatures
+\fi
+
+\title{R Notebook}
+\author{}
+\date{\vspace{-2.5em}}
+
+\begin{document}
+\maketitle
+
+\hypertarget{brief-text-description-of-data}{%
+\section{Brief Text Description of
+Data}\label{brief-text-description-of-data}}
+
+\begin{verbatim}
+## The data contains 3168 observations of the following 9 variables:
+## 
+##   - Rating: n = 3168, Mean = 4.13, SD = 0.55, Median = , MAD = 0.44, range: [1, 5], Skewness = -1.60, Kurtosis = 4.12, 11.77% missing
+##   - App: 2937 entries, such as Candy Crush Saga (0.22%); Helix Jump (0.19%); Subway Surfers (0.19%) and 2934 others (0 missing)
+##   - Reviews: n = 3168, Mean = 3.78e+05, SD = 1.96e+06, Median = 1556.50, MAD = 2306.18, range: [0, 27725352], Skewness = 9.58, Kurtosis = 110.39, 0% missing
+##   - Size: 293 entries, such as 13M (2.21%); 12M (2.08%); 19M (1.83%) and 290 others (0 missing)
+##   - Installs: n = 3168, Mean = 1.25e+07, SD = 7.02e+07, Median = 1.00e+05, MAD = 1.48e+05, range: [0, 1e+09], Skewness = 10.88, Kurtosis = 134.98, 0% missing
+##   - Type: 2 entries, such as Free (94.16%); Paid (5.84%); NA (0 missing)
+##   - Price: n = 3168, Mean = 1.45, SD = 21.83, Median = 0.00, MAD = 0.00, range: [0, 400], Skewness = 17.71, Kurtosis = 314.60, 0% missing
+##   - Content.Rating: 5 entries, such as Everyone (77.08%); Teen (14.61%); Everyone 10 (4.58%) and 2 others (0 missing)
+##   - Genres: 10 entries, such as Tools (23.33%); Entertainment (16.95%); Lifestyle (10.86%) and 7 others (0 missing)
+\end{verbatim}
+
+\begin{table}
+
+\caption{\label{tab:unnamed-chunk-3}Description of Numeric Variables}
+\centering
+\begin{tabular}[t]{lrrrrrrr>{}r}
+\toprule
+  & Unique (\#) & Missing (\%) & Mean & SD & Min & Median & Max &   \\
+\midrule
+Rating & 39 & 12 & \num{4.1} & \num{0.5} & \num{1.0} & \num{4.2} & \num{5.0} & \includegraphics[width=0.67in, height=0.17in]{Goog_play_store_tables_files/figure-latex//hist_1030123ad20cb.pdf}\\
+Reviews & 2022 & 0 & \num{377726.0} & \num{1959519.0} & \num{0.0} & \num{1556.5} & \num{27725352.0} & \includegraphics[width=0.67in, height=0.17in]{Goog_play_store_tables_files/figure-latex//hist_103016dcd3714.pdf}\\
+Installs & 20 & 0 & \num{12516730.8} & \num{70192980.8} & \num{0.0} & \num{100000.0} & \num{1000000000.0} & \includegraphics[width=0.67in, height=0.17in]{Goog_play_store_tables_files/figure-latex//hist_1030135d4ce5e.pdf}\\
+Price & 37 & 0 & \num{1.4} & \num{21.8} & \num{0.0} & \num{0.0} & \num{400.0} & \includegraphics[width=0.67in, height=0.17in]{Goog_play_store_tables_files/figure-latex//hist_103014dc044dc.pdf}\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}
+
+\caption{\label{tab:unnamed-chunk-4}Summary of Representation of Values in the Data}
+\centering
+\begin{tabular}[t]{llrr}
+\toprule
+  &    & Mean & Std. Dev.\\
+\midrule
+Rating &  & 4.1 & 0.5\\
+Reviews &  & 377726.0 & 1959519.0\\
+Installs &  & 12516730.8 & 70192980.8\\
+Price &  & 1.4 & 21.8\\
+\midrule
+ &  & N & Pct.\\
+Type & Free & 2983 & 94.2\\
+ & Paid & 185 & 5.8\\
+Content.Rating & Everyone & 2442 & 77.1\\
+ & Everyone 10 & 145 & 4.6\\
+ & Mature 17 & 116 & 3.7\\
+ & Teen & 463 & 14.6\\
+ & Unrated & 2 & 0.1\\
+Genres & Action & 327 & 10.3\\
+ & Arcade & 196 & 6.2\\
+ & Casual & 167 & 5.3\\
+ & Entertainment & 537 & 17.0\\
+ & Lifestyle & 344 & 10.9\\
+ & News \& Magazines & 216 & 6.8\\
+ & Photography & 254 & 8.0\\
+ & Shopping & 201 & 6.3\\
+ & Simulation & 187 & 5.9\\
+ & Tools & 739 & 23.3\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}
+
+\caption{\label{tab:unnamed-chunk-5}Crosstab frequencies for Genres and Type (Free vs Paid)}
+\centering
+\begin{tabular}[t]{llrrr}
+\toprule
+Genres &   & Free & Paid & All\\
+\midrule
+Action & N & 303 & 24 & 327\\
+ & \% row & \num{92.7} & \num{7.3} & \num{100.0}\\
+Arcade & N & 178 & 18 & 196\\
+ & \% row & \num{90.8} & \num{9.2} & \num{100.0}\\
+Casual & N & 158 & 9 & 167\\
+ & \% row & \num{94.6} & \num{5.4} & \num{100.0}\\
+Entertainment & N & 520 & 17 & 537\\
+ & \% row & \num{96.8} & \num{3.2} & \num{100.0}\\
+Lifestyle & N & 327 & 17 & 344\\
+ & \% row & \num{95.1} & \num{4.9} & \num{100.0}\\
+News \& Magazines & N & 214 & 2 & 216\\
+ & \% row & \num{99.1} & \num{0.9} & \num{100.0}\\
+Photography & N & 235 & 19 & 254\\
+ & \% row & \num{92.5} & \num{7.5} & \num{100.0}\\
+Shopping & N & 199 & 2 & 201\\
+ & \% row & \num{99.0} & \num{1.0} & \num{100.0}\\
+Simulation & N & 179 & 8 & 187\\
+ & \% row & \num{95.7} & \num{4.3} & \num{100.0}\\
+Tools & N & 670 & 69 & 739\\
+ & \% row & \num{90.7} & \num{9.3} & \num{100.0}\\
+All & N & 2983 & 185 & 3168\\
+ & \% row & \num{94.2} & \num{5.8} & \num{100.0}\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}
+
+\caption{\label{tab:unnamed-chunk-6}Mean Installs by Genres & Type}
+\centering
+\begin{tabular}[t]{lllrr}
+\toprule
+Genres & Type &   & mean & sd\\
+\midrule
+Action & Free & Installs & \num{24448471.25} & \num{73344129.82}\\
+ & Paid & Installs & \num{710510.42} & \num{2023553.71}\\
+Arcade & Free & Installs & \num{55250797.42} & \num{180604118.66}\\
+ & Paid & Installs & \num{79845.17} & \num{232704.37}\\
+Casual & Free & Installs & \num{48072459.24} & \num{127578838.49}\\
+ & Paid & Installs & \num{3574.44} & \num{4835.06}\\
+Entertainment & Free & Installs & \num{3532350.98} & \num{14852728.42}\\
+ & Paid & Installs & \num{8068.88} & \num{24004.55}\\
+Lifestyle & Free & Installs & \num{1304748.41} & \num{6520726.06}\\
+ & Paid & Installs & \num{68712.35} & \num{241125.54}\\
+News \& Magazines & Free & Installs & \num{19869159.58} & \num{135617251.10}\\
+ & Paid & Installs & \num{2750.00} & \num{3181.98}\\
+Photography & Free & Installs & \num{10868803.89} & \num{24520044.60}\\
+ & Paid & Installs & \num{196249.47} & \num{375534.06}\\
+Shopping & Free & Installs & \num{7558988.37} & \num{20196844.24}\\
+ & Paid & Installs & \num{5050.00} & \num{7000.36}\\
+Simulation & Free & Installs & \num{3856657.09} & \num{9250322.84}\\
+ & Paid & Installs & \num{16900.00} & \num{33785.33}\\
+Tools & Free & Installs & \num{5263654.44} & \num{30512206.70}\\
+ & Paid & Installs & \num{6468.71} & \num{17647.02}\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}
+
+\caption{\label{tab:unnamed-chunk-7}Mean Price by Genres (using only paid apps)}
+\centering
+\begin{tabular}[t]{llrr}
+\toprule
+Genres &   & mean & sd\\
+\midrule
+Action & Installs & \num{710510.42} & \num{2023553.71}\\
+ & Price & \num{3.47} & \num{3.42}\\
+Arcade & Installs & \num{79845.17} & \num{232704.37}\\
+ & Price & \num{2.66} & \num{3.96}\\
+Casual & Installs & \num{3574.44} & \num{4835.06}\\
+ & Price & \num{3.32} & \num{4.47}\\
+Entertainment & Installs & \num{8068.88} & \num{24004.55}\\
+ & Price & \num{97.56} & \num{171.85}\\
+Lifestyle & Installs & \num{68712.35} & \num{241125.54}\\
+ & Price & \num{138.43} & \num{185.44}\\
+News \& Magazines & Installs & \num{2750.00} & \num{3181.98}\\
+ & Price & \num{1.99} & \num{1.41}\\
+Photography & Installs & \num{196249.47} & \num{375534.06}\\
+ & Price & \num{6.54} & \num{7.14}\\
+Shopping & Installs & \num{5050.00} & \num{7000.36}\\
+ & Price & \num{2.74} & \num{0.35}\\
+Simulation & Installs & \num{16900.00} & \num{33785.33}\\
+ & Price & \num{5.24} & \num{5.15}\\
+Tools & Installs & \num{6468.71} & \num{17647.02}\\
+ & Price & \num{3.43} & \num{3.83}\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{verbatim}
+## Descriptive Statistics  
+## data  
+## Group: Genres = Action  
+## N: 327  
+## 
+##                         Mean       Std.Dev     Min       Median            Max   N.Valid   Pct.Valid
+## -------------- ------------- ------------- ------- ------------ -------------- --------- -----------
+##       Installs   22706235.60   70866515.06   10.00   1000000.00   500000000.00    327.00      100.00
+##          Price          0.25          1.28    0.00         0.00          16.99    327.00      100.00
+##         Rating          4.26          0.29    3.10         4.30           5.00    322.00       98.47
+##        Reviews     774894.94    1732507.24    0.00     59017.00    10981850.00    327.00      100.00
+## 
+## Group: Genres = Arcade  
+## N: 196  
+## 
+##                         Mean        Std.Dev    Min       Median             Max   N.Valid   Pct.Valid
+## -------------- ------------- -------------- ------ ------------ --------------- --------- -----------
+##       Installs   50184077.31   172806655.37   1.00   1000000.00   1000000000.00    196.00      100.00
+##          Price          0.24           1.40   0.00         0.00           17.99    196.00      100.00
+##         Rating          4.30           0.36   3.10         4.40            5.00    186.00       94.90
+##        Reviews    1521096.63     4894891.25   0.00     42879.00     27725352.00    196.00      100.00
+## 
+## Group: Genres = Casual  
+## N: 167  
+## 
+##                         Mean        Std.Dev     Min      Median            Max   N.Valid   Pct.Valid
+## -------------- ------------- -------------- ------- ----------- -------------- --------- -----------
+##       Installs   45481920.54   124548905.71   10.00   500000.00   500000000.00    167.00      100.00
+##          Price          0.18           1.24    0.00        0.00          14.99    167.00      100.00
+##         Rating          4.14           0.44    2.40        4.30           5.00    160.00       95.81
+##        Reviews    2015815.74     5101469.52    0.00    11748.00    22430188.00    167.00      100.00
+## 
+## Group: Genres = Entertainment  
+## N: 537  
+## 
+##                        Mean       Std.Dev    Min     Median            Max   N.Valid   Pct.Valid
+## -------------- ------------ ------------- ------ ---------- -------------- --------- -----------
+##       Installs   3420781.53   14628337.89   1.00   10000.00   100000000.00    537.00      100.00
+##          Price         3.09         34.26   0.00       0.00         399.99    537.00      100.00
+##         Rating         4.09          0.56   1.60       4.20           5.00    448.00       83.43
+##        Reviews     61133.80     253029.17   0.00     323.00     3213548.00    537.00      100.00
+## 
+## Group: Genres = Lifestyle  
+## N: 344  
+## 
+##                        Mean      Std.Dev    Min     Median            Max   N.Valid   Pct.Valid
+## -------------- ------------ ------------ ------ ---------- -------------- --------- -----------
+##       Installs   1243665.23   6362952.21   0.00   10000.00   100000000.00    344.00      100.00
+##          Price         6.84        50.07   0.00       0.00         400.00    344.00      100.00
+##         Rating         4.09         0.72   1.50       4.20           5.00    279.00       81.10
+##        Reviews     24899.05    169701.68   0.00     134.50     2789775.00    344.00      100.00
+## 
+## Group: Genres = News & Magazines  
+## N: 216  
+## 
+##                         Mean        Std.Dev    Min     Median             Max   N.Valid   Pct.Valid
+## -------------- ------------- -------------- ------ ---------- --------------- --------- -----------
+##       Installs   19685211.34   134998472.06   0.00   10000.00   1000000000.00    216.00      100.00
+##          Price          0.02           0.21   0.00       0.00            2.99    216.00      100.00
+##         Rating          4.14           0.59   1.70       4.30            5.00    169.00       78.24
+##        Reviews      45593.78      137986.45   0.00     200.00       878065.00    216.00      100.00
+## 
+## Group: Genres = Photography  
+## N: 254  
+## 
+##                         Mean       Std.Dev    Min       Median            Max   N.Valid   Pct.Valid
+## -------------- ------------- ------------- ------ ------------ -------------- --------- -----------
+##       Installs   10070463.21   23748787.56   5.00   1000000.00   100000000.00    254.00      100.00
+##          Price          0.49          2.57   0.00         0.00          29.99    254.00      100.00
+##         Rating          4.15          0.51   2.00         4.30           5.00    236.00       92.91
+##        Reviews     302926.92     964187.97   0.00     20195.50     7594559.00    254.00      100.00
+## 
+## Group: Genres = Shopping  
+## N: 201  
+## 
+##                        Mean       Std.Dev    Min       Median            Max   N.Valid   Pct.Valid
+## -------------- ------------ ------------- ------ ------------ -------------- --------- -----------
+##       Installs   7483824.80   20109657.74   5.00   1000000.00   100000000.00    201.00      100.00
+##          Price         0.03          0.27   0.00         0.00           2.99    201.00      100.00
+##         Rating         4.23          0.44   1.60         4.30           5.00    179.00       89.05
+##        Reviews    233721.61     973681.39   0.00     10318.00     6212081.00    201.00      100.00
+## 
+## Group: Genres = Simulation  
+## N: 187  
+## 
+##                        Mean      Std.Dev     Min      Median           Max   N.Valid   Pct.Valid
+## -------------- ------------ ------------ ------- ----------- ------------- --------- -----------
+##       Installs   3692389.41   9082684.70   10.00   500000.00   50000000.00    187.00      100.00
+##          Price         0.22         1.46    0.00        0.00         12.99    187.00      100.00
+##         Rating         4.14         0.41    2.90        4.20          5.00    182.00       97.33
+##        Reviews    149863.16    458404.21    1.00     6514.00    4218587.00    187.00      100.00
+## 
+## Group: Genres = Tools  
+## N: 739  
+## 
+##                        Mean       Std.Dev    Min     Median            Max   N.Valid   Pct.Valid
+## -------------- ------------ ------------- ------ ---------- -------------- --------- -----------
+##       Installs   4772794.07   29091121.18   1.00   50000.00   500000000.00    739.00      100.00
+##          Price         0.32          1.53   0.00       0.00          25.99    739.00      100.00
+##         Rating         4.01          0.64   1.00       4.20           5.00    634.00       85.79
+##        Reviews    142463.94    1004547.21   0.00     313.00    13479633.00    739.00      100.00
+\end{verbatim}
+
+\end{document}

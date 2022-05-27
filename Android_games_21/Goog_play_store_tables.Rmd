@@ -1,0 +1,103 @@
+---
+title: "R Notebook"
+output:
+  word_document: default
+  html_notebook: default
+  pdf_document: default
+---
+
+```{r include=FALSE}
+set.seed(755)
+data <- read.csv("https://github.com/noutland-stats/3990_UGA/raw/main/Android_games_21/googleplaystore.csv")
+library(easystats)
+library(tidyverse)
+library(summarytools)
+library(modelsummary)
+filts <- data %>% group_by(Genres) %>%
+  count(sort = T) %>% ungroup() %>%
+  filter(n > 100) %>% slice_sample(n=10) %>% pull(Genres)
+data <- data %>% filter(Genres %in% filts, Size != "Varies with device") %>%
+  select(-c(Category, Last.Updated:Android.Ver))
+```
+
+
+
+
+# Brief Text Description of Data
+
+
+
+
+
+```{r echo=FALSE}
+report(data)
+```
+
+
+
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+title1 <- "Description of Numeric Variables"
+data %>% datasummary_skim(data = .,
+                          title = title1, histogram = F)
+```
+
+
+
+
+
+
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+title2 <- "Summary of Representation of Values in the Data"
+data %>% modelsummary::datasummary_balance(~1,data = .,
+                                           title = title2)
+```
+
+
+
+
+
+
+
+
+```{r echo=FALSE}
+title3 <- "Crosstab frequencies for Genres and Type (Free vs Paid)"
+modelsummary::datasummary_crosstab(Genres~Type, data = data,
+                                   title = title3)
+```
+
+
+```{r echo=FALSE}
+title6 <- "Descriptive Values by Genres (using all apps)"
+datasummary(Genres*(Rating+Installs+Price+Reviews) ~ Mean + SD + Min + Median + Max ,
+            data = data, title = title6)
+```
+
+
+
+
+
+```{r echo=FALSE}
+title4 <- "Mean Installs by Genres & Type"
+datasummary(Genres * Type *(Installs) ~ (mean + sd),data = data, title = title4, output = "latex")
+```
+
+
+
+
+
+
+```{r echo=FALSE}
+title5 <- "Mean Price by Genres (using only paid apps)"
+data %>% filter(Type == "Paid") %>% datasummary(Genres * (Installs + Price) ~ (mean + sd) ,
+            data = ., title = title5)
+```
+
+
+
+
+
+
+
+
